@@ -1,0 +1,25 @@
+﻿
+@model PlurasightLogin.Controllers.RegisterModel
+
+<h1>Registraion</h1>
+<hr />
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.LabelFor(x => x.Username) @Html.TextAreaFor(x => x.Username)
+    <br />
+    @Html.LabelFor(x => x.FullName) @Html.TextAreaFor(x => x.FullName)
+
+    <br />
+    @Html.LabelFor(x => x.AddressLine) @Html.TextAreaFor(x => x.AddressLine)
+    <br />
+    @Html.LabelFor(x => x.Country) @Html.TextAreaFor(x => x.Country)
+
+    <br />
+    @Html.LabelFor(x => x.Password) @Html.PasswordFor(x => x.Password)
+    <br />
+    @Html.LabelFor(x => x.Email) @Html.TextAreaFor(x => x.Email)
+
+    <br />
+    <input class="btn" type="submit" value="Register" />
+}
