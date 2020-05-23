@@ -1,0 +1,27 @@
+﻿body {
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+#site-title, .site-title, #site-title a, .site-title a, .entry-title, .entry-title a, h1, h2, h3, h4, h5, h6 {
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+button, input, select, textarea {
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+.ht-service-left-bg {
+    background-image: url(http://bknews.csam.com.vn/wp-content/uploads/2019/05/itel-banner.jpg);
+}
+
+#ht-counter-section {
+    background-image: url(http://bknews.csam.com.vn/wp-content/uploads/2019/05/concert.jpg);
+}
+
+#ht-cta-section {
+    background-image: url(http://bknews.csam.com.vn/wp-content/uploads/2019/05/cta.jpg);
+}
+.recentcomments a {
+    display: inline !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}

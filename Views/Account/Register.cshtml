@@ -1,25 +1,97 @@
 ﻿
 @model PlurasightLogin.Controllers.RegisterModel
 
-<h1>Registraion</h1>
-<hr />
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-    @Html.ValidationSummary()
-    @Html.LabelFor(x => x.Username) @Html.TextAreaFor(x => x.Username)
-    <br />
-    @Html.LabelFor(x => x.FullName) @Html.TextAreaFor(x => x.FullName)
 
-    <br />
-    @Html.LabelFor(x => x.AddressLine) @Html.TextAreaFor(x => x.AddressLine)
-    <br />
-    @Html.LabelFor(x => x.Country) @Html.TextAreaFor(x => x.Country)
 
-    <br />
-    @Html.LabelFor(x => x.Password) @Html.PasswordFor(x => x.Password)
-    <br />
-    @Html.LabelFor(x => x.Email) @Html.TextAreaFor(x => x.Email)
+<!DOCTYPE html>
+<html lang="en">
 
-    <br />
-    <input class="btn" type="submit" value="Register" />
-}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/Container/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/Container/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                            {
+                                Html.ValidationSummary();
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        @Html.TextBoxFor(x => x.Username, new { placeholder = "Username" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(x => x.FullName, new { placeholder = "Fullname" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(x => x.Email, new { placeholder = "Email Address" })
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        @Html.TextAreaFor(x => x.AddressLine, new { placeholder = "Address" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @Html.TextAreaFor(x => x.Country, new { placeholder = "Country" })
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary btn-user btn-block" value="Register"/>
+                            }
+
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/Account/ForgotPassword">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="/Account/LoginAsync">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/Container/vendor/jquery/jquery.min.js"></script>
+    <script src="/Container/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/Container/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/Container/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

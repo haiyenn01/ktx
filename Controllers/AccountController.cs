@@ -31,6 +31,9 @@ namespace PlurasightLogin.Controllers
             {
                 var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var resetUrl=Url.Action("PasswordReset", "Account", new { userid = user.Id, token = token }, Request.Url.Scheme);
+                string content = System.IO.File.ReadAllText(Server.MapPath("Email.cshtml"));
+                content = content.Replace("{{FullName}}", user.FullName);
+                content = content.Replace("{{URL}}", resetUrl);
                  await UserManager.SendEmailAsync(user.Id, "Password Reset", $"Use link to reset password : {resetUrl}");
             }
             return RedirectToAction("Index", "Home");
@@ -60,7 +63,8 @@ namespace PlurasightLogin.Controllers
             var identityUser = await UserManager.FindByNameAsync(model.Username);
             if (identityUser != null)
             {
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError("", "Tài khoản đã tồn tại!");
+                return View();
             }
             var user = new ExtendedUser
             {
@@ -74,10 +78,8 @@ namespace PlurasightLogin.Controllers
             {
                var token = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                var confirmUrl =  Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = token }, Request.Url.Scheme);
-                string content = System.IO.File.ReadAllText(Server.MapPath("Email.html"));
-                content = content.Replace("{{FullName}}", user.FullName);
-                content = content.Replace("{{URL}}", confirmUrl.ToString());
-                await UserManager.SendEmailAsync(user.Id, "Email Confirmation ", content);
+               
+                await UserManager.SendEmailAsync(user.Id, "Email Confirmation ", $"Vui long xac thuc email de tao tai khoan tai <a href='{ confirmUrl }'>day</a>");
                 
                 return RedirectToAction("Index", "Home");
             }
