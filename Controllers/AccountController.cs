@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using PlurasightLogin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace PlurasightLogin.Controllers
 {
     public class AccountController : Controller 
     {
+        private readonly Model1 db = new Model1();
         public UserManager<ExtendedUser> UserManager => HttpContext.GetOwinContext().Get<UserManager<ExtendedUser>>();
         public SignInManager<ExtendedUser, string> SignInManager => HttpContext.GetOwinContext().Get<SignInManager<ExtendedUser, string>>();
         
@@ -31,16 +33,28 @@ namespace PlurasightLogin.Controllers
             {
                 var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var resetUrl=Url.Action("PasswordReset", "Account", new { userid = user.Id, token = token }, Request.Url.Scheme);
-                string content = System.IO.File.ReadAllText(Server.MapPath("Email.cshtml"));
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/Email.html"));
                 content = content.Replace("{{FullName}}", user.FullName);
                 content = content.Replace("{{URL}}", resetUrl);
                  await UserManager.SendEmailAsync(user.Id, "Password Reset", $"Use link to reset password : {resetUrl}");
+                return RedirectToAction("ThongBaoQuenMK", "Account");
             }
-            return RedirectToAction("Index", "Home");
+            else
+            {
+                ModelState.AddModelError("", "Tai khoan khong ton tai!");
+                return View();
+            }
         }
         [HttpPost]
         public async Task<ActionResult> LoginAsync(LoginModel model)
         {
+            var checkuser = db.AspNetUsers.FirstOrDefault(x => x.UserName == model.Username);
+            if(checkuser.EmailConfirmed == false)
+            {
+                ModelState.AddModelError("", "Tai khoan khong ton tai");
+                db.AspNetUsers.Remove(checkuser);
+                return View();
+            }
           var signInStatus= await SignInManager.PasswordSignInAsync(model.Username, model.Password, true,true);
             switch (signInStatus)
             {
@@ -80,8 +94,8 @@ namespace PlurasightLogin.Controllers
                var confirmUrl =  Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = token }, Request.Url.Scheme);
                
                 await UserManager.SendEmailAsync(user.Id, "Email Confirmation ", $"Vui long xac thuc email de tao tai khoan tai <a href='{ confirmUrl }'>day</a>");
-                
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("ThongBao", "Account");
             }
             ModelState.AddModelError(" ", identityResult.Errors.FirstOrDefault());
             return View(model);
@@ -94,7 +108,8 @@ namespace PlurasightLogin.Controllers
             {
                 return View("Error");
             }
-              return RedirectToAction("Index", "Home");
+            return RedirectToAction("LoginAsync", "Account");
+            
         }
         public ActionResult PasswordReset(string userid,string token)
         {
@@ -109,6 +124,15 @@ namespace PlurasightLogin.Controllers
                 return View("Error");
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ThongBao()
+        {
+            return View();
+        }
+        public ActionResult ThongBaoQuenMK()
+        {
+            return View();
         }
     }
 
