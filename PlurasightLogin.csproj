@@ -163,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="ExtendedUser.cs" />
     <Compile Include="ExtendedUserBdContext.cs" />
@@ -2034,10 +2035,11 @@
     <Content Include="Views\Account\PasswordReset.cshtml" />
     <Content Include="Views\Account\ThongBao.cshtml" />
     <Content Include="Views\Account\ThongBaoQuenMK.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\Student\TrangChu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
