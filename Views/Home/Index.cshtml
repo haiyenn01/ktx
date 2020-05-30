@@ -1,11 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@model List<PlurasightLogin.Models.BaiViet>
+<!DOCTYPE html>
 <html lang="vi-VN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="http://ktx.hust.edu.vn/xmlrpc.php">
-    
+
     <title>Trung tâm Quản lý Ký túc xá &#8211; Trường Đại học Bách Khoa Hà Nội</title>
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
     <link rel='dns-prefetch' href='//s.w.org' />
@@ -34,8 +41,8 @@
     <link rel='stylesheet' id='font-awesome-css' href='~/Content/StyleSheet4.css' type='text/css' media='all' />
     <link rel='stylesheet' id='owl-carousel-css' href='~/Content/StyleSheet5.css' type='text/css' media='all' />
     <link rel='stylesheet' id='nivo-lightbox-css' href='~/Content/StyleSheet6.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='total-style-css' href='~/Content/StyleSheet7.css' type='text/css' media='all' />
-    
+    <link rel='stylesheet' id='total-style-css' href='~/Content/StyleSheet15.css' type='text/css' media='all' />
+
     <link rel="stylesheet" id="total-style-inline-css" href="~/Content/StyleSheet1.css" />
     <link rel='stylesheet' id='total-fonts-css' href='~/Content/StyleSheet8.css' type='text/css' media='all' />
     <link rel='stylesheet' id='elementor-icons-css' href='~/Content/StyleSheet9.css' type='text/css' media='all' />
@@ -56,7 +63,7 @@
     <link rel="alternate" type="application/json+oembed" href="http://ktx.hust.edu.vn/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fktx.hust.edu.vn%2F" />
     <link rel="alternate" type="text/xml+oembed" href="http://ktx.hust.edu.vn/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fktx.hust.edu.vn%2F&#038;format=xml" />
     <!-- Fonts Plugin CSS - https://fontsplugin.com/ -->
-    <link rel="stylesheet" href="~/Content/StyleSheet14.css"/>
+    <link rel="stylesheet" href="~/Content/StyleSheet14.css" />
 </head>
 <body class="home page-template page-template-templates page-template-home-template page-template-templateshome-template-php page page-id-7 wp-custom-logo group-blog ht_right_sidebar ht-sticky-header columns-3 elementor-default elementor-page elementor-page-7">
     <div id="ht-page">
@@ -86,7 +93,7 @@
                         <img alt="KÝ TÚC XÁ ĐHBKHN" src="~/Content/img/h1.png">
                         <div class="ht-slide-caption">
                             <div class="ht-slide-cap-title">
-                                <span>KÝ TÚC XÁ ĐHBKHN</span>
+                                <span>KÝ TÚC XÁ ĐHGTVT</span>
                             </div>
 
                             <div class="ht-slide-cap-desc">
@@ -97,10 +104,10 @@
                     <div class="ht-slide">
                         <div class="ht-slide-overlay"></div>
 
-                        <img alt="KÝ TÚC XÁ ĐHBKHN" src="~/Content/img/h2.jpg">
+                        <img alt="KÝ TÚC XÁ ĐHBKHN" src="~/Content/img/h3.jpg">
                         <div class="ht-slide-caption">
                             <div class="ht-slide-cap-title">
-                                <span>KÝ TÚC XÁ ĐHBKHN</span>
+                                <span>KÝ TÚC XÁ ĐHGTVT</span>
                             </div>
 
                             <div class="ht-slide-cap-desc">
@@ -111,10 +118,10 @@
                     <div class="ht-slide">
                         <div class="ht-slide-overlay"></div>
 
-                        <img alt="KÝ TÚC XÁ ĐHBKHN" src="~/Content/img/h3.jpg">
+                        <img alt="KÝ TÚC XÁ ĐHBKHN" src="~/Content/img/h2.jpg">
                         <div class="ht-slide-caption">
                             <div class="ht-slide-cap-title">
-                                <span>KÝ TÚC XÁ ĐHBKHN</span>
+                                <span>KÝ TÚC XÁ ĐHGTVT</span>
                             </div>
 
                             <div class="ht-slide-cap-desc">
@@ -122,8 +129,11 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
+            
+
             <section id="ht-blog-section" class="ht-section">
                 <div class="ht-container">
                     <div class="ht-section-title-tagline">
@@ -132,57 +142,24 @@
                     </div>
 
                     <div class="ht-blog-wrap ht-clearfix">
-                        <div class="ht-blog-post ht-clearfix">
+                        @foreach (var item in Model)
+                        {
+                            <div class="ht-blog-post ht-clearfix">
 
-                            <div class="ht-blog-thumbnail">
-                                <a href=""><img src="~/Content/img/h1.png" alt="Thông báo lịch xếp ở KTX kỳ 20192"></a>
+                                <div class="ht-blog-thumbnail">
+                                    <a href=""><img src="~/Areas/Admin/assets/images/baiviet/@item.Anh"></a>
+                                </div>
+                                <div class="ht-blog-excerpt">
+                                    <h5><a href="">@item.TieuDe</a></h5>
+                                    <div class="ht-blog-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>@item.NgayTao</div>
+                                   @item.NoiDung
+                                </div>
+
+                                <div class="ht-blog-read-more">
+                                    <a href="">Read More</a>
+                                </div>
                             </div>
-                            <div class="ht-blog-excerpt">
-                                <h5><a href="">Thông báo lịch xếp ở KTX kỳ 20192</a></h5>
-                                <div class="ht-blog-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>Tháng Hai 21, 2020</div>
-                                [Thông báo]
-                                &#x26a1;&#xfe0f;&#x26a1;&#xfe0f; 1. Thông báo về lịch xếp ở nội trú KTX kỳ 20192:
-                                Căn cứ vào diễn biến dịch viêm đường hô hấp cấp do virus Covid-19 và thông báo lùi lịch học củ
-                            </div>
-
-                            <div class="ht-blog-read-more">
-                                <a href="">Read More</a>
-                            </div>
-                        </div>
-                        <div class="ht-blog-post ht-clearfix">
-                            <div class="ht-blog-excerpt">
-                                <h5><a href="">Thông báo thời gian thu lệ phí và mức thu lệ phí xếp cho sinh viên</a></h5>
-                                <div class="ht-blog-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>Tháng Mười Hai 26, 2019</div>
-                                &nbsp;
-                                THÔNG BÁO
-
-
-                                Căn cứ vào quyết định số 1787/QĐ- ĐHBK- TT QL KTX về mức thu lệ phí ở của sinh viên nội trú KTX năm học 2019-2020
-                                Căn cứ vào kế hoạch xếp ở của sinh viên nội trú
-                            </div>
-
-                            <div class="ht-blog-read-more">
-                                <a href="">Read More</a>
-                            </div>
-                        </div>
-                        <div class="ht-blog-post ht-clearfix">
-                            <div class="ht-blog-excerpt">
-                                <h5><a href="">KHẢO SÁT LẤY Ý KIẾN CỦA SINH VIÊN NỘI TRÚ KTX KỲ I &#8211; NĂM HỌC 2019-2020</a></h5>
-                                <div class="ht-blog-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>Tháng Mười Hai 12, 2019</div>
-
-                                [KHẢO SÁT LẤY Ý KIẾN CỦA SINH VIÊN NỘI TRÚ KTX KỲ I - NĂM HỌC 2019-2020]
-
-
-
-
-
-                                Nhằm nâng cao chất lượng của KTX thông qua việc tiếp thu các ý kiến phản hồi của các bạn sinh vi
-                            </div>
-
-                            <div class="ht-blog-read-more">
-                                <a href="">Read More</a>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </section>
@@ -199,9 +176,9 @@
                             <div class="ht-service-post ht-clearfix">
                                 <div class="ht-service-icon"><i class="fa fa-resistance"></i></div>
                                 <div class="ht-service-excerpt">
-                                    <h5>HT1 &#8211; Hệ thống quản lý CSAM</h5>
+                                    <h5>HT1 &#8211; Hệ thống quản lý KTX</h5>
                                     <div class="ht-service-text">
-                                        CSAM là Hệ thống quản lý do TT Quản lý KTX phát triển với mục tiêu số hóa thông tin sinh viên lưu tr									 <br />
+                                        Quản lý KTX phát triển với mục tiêu số hóa thông tin sinh viên lưu trữ									 <br />
                                         <a href="">Read More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
@@ -211,7 +188,7 @@
                                 <div class="ht-service-excerpt">
                                     <h5>HT2 &#8211; Tiếp nhận phản ánh, xử lý sự cố</h5>
                                     <div class="ht-service-text">
-                                        Khi gặp các vấn đề liên quan đến An ninh trật tự – Vệ sinh môi trường – Điện nước hư hỏng, bạn hãy g									 <br />
+                                        Khi gặp các vấn đề liên quan đến An ninh trật tự – Vệ sinh môi trường – Điện nước hư hỏng, bạn hãy gọi điện cho hotline 113									 <br />
                                         <a href="">Read More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
@@ -221,7 +198,7 @@
                                 <div class="ht-service-excerpt">
                                     <h5>HT3 &#8211; Tiệm giặt là</h5>
                                     <div class="ht-service-text">
-                                        Địa điểm: Nhà hồng xanh, cạnh Hội trường B6 - Ký túc xá
+                                        Địa điểm: Nhà B6 - Ký túc xá
 
                                         Giờ mở cửa: 09:00 - 13:00, 14:00 - 21:00 hà									 <br />
                                         <a href="">Read More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -233,7 +210,7 @@
                                 <div class="ht-service-excerpt">
                                     <h5>HT4 &#8211; Không gian học tập chung</h5>
                                     <div class="ht-service-text">
-                                        Địa điểm: Tầng 5 - Nhà B10
+                                        Địa điểm: Tầng 3 - Nhà A5 KTX
 
                                         Giờ mở cửa: 09:00 - 22:00 hàng ngày									 <br />
                                         <a href="">Read More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -305,7 +282,7 @@
                                             <div class="anhnho">Điện thoại: <span class="redtext">024 38692942</span></div>
                                         </div>
                                         <div class="smallrow">
-                                            <div class="anhnho">Email: <a href="mailto:ktx@hust.edu.vn"><span class="redtext">ktx@hust.edu.vn</span></a></div>
+                                            <div class="anhnho">Email: <a href=""><span class="redtext">ktx@hust.edu.vn</span></a></div>
                                         </div>
                                     </div>
                                 </aside>

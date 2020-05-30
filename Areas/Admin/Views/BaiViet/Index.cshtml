@@ -1,0 +1,110 @@
+﻿@model List<PlurasightLogin.Models.BaiViet>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Bài viết</li>
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mytable">
+                    <div class="card-header">
+                        <div class="col-md-12" style="text-align:right;margin-top:-10px;">
+                            <a class="btn btn-secondary rounded-circle btnAdd" title="Thêm" href="/Admin/BaiViet/ThemMoi"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a class="btn btn-danger rounded-circle btnDeleteAll" title="Xóa tất cả"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-striped table-responsive table-hover" id="myTable" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th width="5%">STT</th>
+                                        <th width="5%">Id</th>
+                                        <th width="15%">Anh</th>
+                                        <th width="15%">Tiêu đề</th>
+                                        <th width="20%">Mô tả</th>
+                                        <th width="15%">Ngày tạo</th>
+                                        <th width="20%">Xử lý</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int count = 0;
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@{count++;}</td>
+                                                <td>@item.Id</td>
+                                                <td><img  src="~/Areas/Admin/assets/images/baiviet/@item.Anh" width="250" height="100"/></td>
+                                                <td>@item.TieuDe</td>
+                                                <td>@item.MoTa</td>
+                                                <td>@item.NgayTao</td>
+                                                <td>
+                                                    <button class="btn btn-info">Sửa</button>
+                                                    <button class="btn btn-danger" onclick="Delete(@item.Id)">Xóa</button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /.main-content -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        toastr.options = {
+            'closeButton': true
+        }
+    });
+    function Delete(Id) {
+        postData('POST', '/Admin/BaiViet/Delete/' + Id, null).then(function(msg) {
+            debugger
+            if (msg.Error == false) {
+                toastr['success'](msg.Title);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000)
+            }
+            else {
+                toastr['warning'](msg.Title);
+            }
+        })
+    };
+    async function postData(verb, url, data) {
+        const response = await fetch(url, {
+            method: verb,
+            mode: 'cors',
+            cache: 'default',
+            credentials: 'same-origin',
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: data
+        }).catch(error => console.error('Error', error));
+        return response.json();
+    };
+</script>

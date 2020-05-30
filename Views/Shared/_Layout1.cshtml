@@ -41,7 +41,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="~/Views/Student/TrangChu.cshtml">
+                <a class="nav-link" href="/Student/TrangChu">
                     <i class="fas fa-home"></i>
                     <span>Trang Chủ</span>
                 </a>
@@ -78,7 +78,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-color.html">Tiệm Giặt Là</a>
-                        <a class="collapse-item" href="utilities-border.html">Phòng Học Chung</a>
+                        <a class="collapse-item" href="/Student/PhongTuHoc">Phòng Học Chung</a>
                     </div>
                 </div>
             </li>
@@ -89,7 +89,7 @@
            
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            @*<li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i class="far fa-user-circle"></i>
                     <span>Account</span>
@@ -103,7 +103,7 @@
                         
                     </div>
                 </div>
-            </li>
+            </li>*@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -308,8 +308,8 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                @{Html.RenderAction("UserName", "Home"); }
+                                <img class="img-profile rounded-circle" src="~/Content/img/user.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -348,7 +348,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; team UTC student</span>
                     </div>
                 </div>
             </footer>

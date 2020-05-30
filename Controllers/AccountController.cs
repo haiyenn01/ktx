@@ -55,11 +55,11 @@ namespace PlurasightLogin.Controllers
                 db.AspNetUsers.Remove(checkuser);
                 return View();
             }
-          var signInStatus= await SignInManager.PasswordSignInAsync(model.Username, model.Password, true,true);
+            var signInStatus =  SignInManager.PasswordSignIn(model.Username, model.Password, true, false);
             switch (signInStatus)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("TrangChu", "Student");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("ChooseProvider");
                 default:
@@ -123,7 +123,7 @@ namespace PlurasightLogin.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("TrangChu", "Student");
         }
 
         public ActionResult ThongBao()

@@ -31,6 +31,7 @@ namespace PlurasightLogin.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<VatTu> VatTus { get; set; }
 
+        public virtual DbSet<BaiViet> BaiViets { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRole>()
